@@ -1,0 +1,187 @@
+<% include ./partials/header %>
+<% include ./partials/indexNav %>
+
+<div class="row path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb arr-right">
+        <li class="breadcrumb-item"><a href="/">Αρχική Σελίδα</a></li>
+        <li class="breadcrumb-item"><a href="/register">Εγγραφή</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Εγγραφή Διαθέτη</li>
+      </ol>
+    </nav>
+</div>
+
+<div class="titles">
+  <h1>Εγγραφή</h1>
+</div>
+
+        <div class="row">
+          <div class="bt">
+                <form action="/registerProvider" method="post" class="form-horizontal" id="reg_form">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Όνομα</label>
+                        <input id="input" class="form-control" type="text" name="firstname" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Επώνυμο</label>
+                        <input class="form-control" type="text" name="lastname" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Email</label>
+                      <p><span class="text-muted">example@domain.com</span></p>
+                        <input class="form-control" type="text" name="username" required>
+                    </div>
+                  <div class="form-group col-md-6">
+                    <label>Τηλέφωνο</label>
+                    <p><span class="text-muted">69xxxxxxxx</span></p>
+                      <input class="form-control" type="tel" name="tel" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Κωδικός</label>
+                        <input class="form-control" type="password" name="password" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Επιβεβαίωση κωδικού</label>
+                        <input class="form-control" type="password" name="Confirmpassword" required>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <fieldset>
+                      <label>Τύπος εγγράφου πιστοποίησης:</label>
+                        <input type="radio" name="type" value="passport">Διαβατήριο
+                        <input type="radio" name="type" value="id">Ταυτότητα
+                    </div>
+                    </fieldset>
+                </div>
+                <div id="textboxes" style="display: none;">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Αριθμός ταυτότητας</label>
+                      <p><span class="text-muted">AA xxxxxx</span></p>
+                        <input class="form-control" type="text" name="id">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Ημ/νία Έκδοσης</label>
+                      <p><span class="text-muted">YYYY/MM/DD</span></p>
+                        <input class="form-control" type="text" name="date">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Αρχή έκδοσης</label>
+                      <p><span class="text-muted">Τ.Α. XXXXXXX</span></p>
+                        <input class="form-control" type="text" name="origination">
+                    </div>
+                  </div>
+                </div>
+
+                <div id="pass" style="display: none;">
+                  <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Αριθμός Διαβατηρίου</label>
+                      <p><span class="text-muted">AAxxxxxxx</span></p>
+                        <input class="form-control" type="text" name="pass">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Οδός-Αριθμός</label>
+                      <input class="form-control" type="text" name="address" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Νομός</label>
+                    <br />
+                      <select  class="form-control" id="county" name="county" data-role="select-dropdown" data-profile="minimal" required>
+                        <option selected disabled hidden>επιλέξτε νομό</option>
+                      	<option value="ΑΙΤΩΛ/ΝΙΑΣ">ΑΙΤΩΛ/ΝΙΑΣ</option>
+                      	<option value="ΑΡΓΟΛΙΔΟΣ">ΑΡΓΟΛΙΔΟΣ</option>
+                      	<option value="ΑΡΚΑΔΙΑΣ">ΑΡΚΑΔΙΑΣ</option>
+                      	<option value="ΑΡΤΗΣ">ΑΡΤΗΣ</option>
+                      	<option value="ΑΤΤΙΚΗΣ">ΑΤΤΙΚΗΣ</option>
+                      	<option value="ΑΧΑΪΑΣ">ΑΧΑΪΑΣ</option>
+                      	<option value="ΒΟΙΩΤΙΑΣ">ΒΟΙΩΤΙΑΣ</option>
+                      	<option value="ΓΡΕΒΕΝΩΝ">ΓΡΕΒΕΝΩΝ</option>
+                      	<option value="ΔΡΑΜΑΣ">ΔΡΑΜΑΣ</option>
+                      	<option value="ΔΩΔΕΚΑΝΗΣΟΥ">ΔΩΔΕΚΑΝΗΣΟΥ</option>
+                      	<option value="ΕΒΡΟΥ">ΕΒΡΟΥ</option>
+                      	<option value="ΕΥΒΟΙΑΣ">ΕΥΒΟΙΑΣ</option>
+                      	<option value="ΕΥΡΥΤΑΝΙΑΣ">ΕΥΡΥΤΑΝΙΑΣ</option>
+                      	<option value="ΖΑΚΥΝΘΟΥ">ΖΑΚΥΝΘΟΥ</option>
+                      	<option value="ΗΛΕΙΑΣ">ΗΛΕΙΑΣ</option>
+                      	<option value="ΗΜΑΘΙΑΣ">ΗΜΑΘΙΑΣ</option>
+                      	<option value="ΗΡΑΚΛΕΙΟΥ">ΗΡΑΚΛΕΙΟΥ</option>
+                      	<option value="ΘΕΣΠΡΩΤΙΑΣ">ΘΕΣΠΡΩΤΙΑΣ</option>
+                      	<option value="ΘΕΣΣΑΛΟΝΙΚΗΣ">ΘΕΣΣΑΛΟΝΙΚΗΣ</option>
+                      	<option value="ΙΩΑΝΝΙΝΩΝ">ΙΩΑΝΝΙΝΩΝ</option>
+                      	<option value="ΚΑΒΑΛΑΣ">ΚΑΒΑΛΑΣ</option>
+                      	<option value="ΚΑΡΔΙΤΣΗΣ">ΚΑΡΔΙΤΣΗΣ</option>
+                      	<option value="ΚΑΣΤΟΡΙΑΣ">ΚΑΣΤΟΡΙΑΣ</option>
+                      	<option value="ΚΕΡΚΥΡΑΣ">ΚΕΡΚΥΡΑΣ</option>
+                      	<option value="ΚΕΦΑΛΛΗΝΙΑΣ">ΚΕΦΑΛΛΗΝΙΑΣ</option>
+                      	<option value="ΚΙΛΚΙΣ">ΚΙΛΚΙΣ</option>
+                      	<option value="ΚΟΖΑΝΗΣ">ΚΟΖΑΝΗΣ</option>
+                      	<option value="ΚΟΡΙΝΘΙΑΣ">ΚΟΡΙΝΘΙΑΣ</option>
+                      	<option value="ΚΥΚΛΑΔΩΝ">ΚΥΚΛΑΔΩΝ</option>
+                      	<option value="ΛΑΚΩΝΙΑΣ">ΛΑΚΩΝΙΑΣ</option>
+                      	<option value="ΛΑΡΙΣΗΣ">ΛΑΡΙΣΗΣ</option>
+                      	<option value="ΛΑΣΙΘΙΟΥ">ΛΑΣΙΘΙΟΥ</option>
+                      	<option value="ΛΕΣΒΟΥ">ΛΕΣΒΟΥ</option>
+                      	<option value="ΛΕΥΚΑΔΟΣ">ΛΕΥΚΑΔΟΣ</option>
+                      	<option value="ΜΑΓΝΗΣΙΑΣ">ΜΑΓΝΗΣΙΑΣ</option>
+                      	<option value="ΜΕΣΣΗΝΙΑΣ">ΜΕΣΣΗΝΙΑΣ</option>
+                      	<option value="ΞΑΝΘΗΣ">ΞΑΝΘΗΣ</option>
+                      	<option value="ΠΕΛΛΗΣ">ΠΕΛΛΗΣ</option>
+                      	<option value="ΠΙΕΡΙΑΣ">ΠΙΕΡΙΑΣ</option>
+                      	<option value="ΠΡΕΒΕΖΗΣ">ΠΡΕΒΕΖΗΣ</option>
+                      	<option value="ΡΕΘΥΜΝΗΣ">ΡΕΘΥΜΝΗΣ</option>
+                      	<option value="ΡΟΔΟΠΗΣ">ΡΟΔΟΠΗΣ</option>
+                      	<option value="ΣΑΜΟΥ">ΣΑΜΟΥ</option>
+                      	<option value="ΣΕΡΡΩΝ">ΣΕΡΡΩΝ</option>
+                      	<option value="ΤΡΙΚΑΛΩΝ">ΤΡΙΚΑΛΩΝ</option>
+                      	<option value="ΦΘΙΩΤΙΔΟΣ">ΦΘΙΩΤΙΔΟΣ</option>
+                      	<option value="ΦΛΩΡΙΝΗΣ">ΦΛΩΡΙΝΗΣ</option>
+                      	<option value="ΦΩΚΙΔΟΣ">ΦΩΚΙΔΟΣ</option>
+                      	<option value="ΧΑΛΚΙΔΙΚΗΣ">ΧΑΛΚΙΔΙΚΗΣ</option>
+                      	<option value="ΧΑΝΙΩΝ">ΧΑΝΙΩΝ</option>
+                      	<option value="ΧΙΟΥ">ΧΙΟΥ</option>
+                      </select>
+                  </div>
+                  </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label>Τ.Κ.</label>
+                      <input class="form-control" type="text" name="zip" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Πόλη</label>
+                    <br />
+                    <select  class="form-control" id="city" name="city" data-role="select-dropdown" data-profile="minimal" required>
+                      <option selected disabled hidden>επιλέξτε πόλη</option>
+                    </select>
+                  </div>
+                </div>
+
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-lg btn-primary btn-block">Εγγραφή</button>
+                  </div>
+                </form>
+                <a href="javascript:history.back()">Πίσω</a>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="/js/validateProvider.js"></script>
+
+<% include ./partials/footer %>

@@ -1,0 +1,87 @@
+<% include ./partials/header %>
+
+<% if(currentUser.userType === "student"){ %>
+  <% include ./partials/studentNav %>
+<% } else if(currentUser.userType === "provider"){ %>
+  <% include ./partials/providerNav %>
+<% } %>
+
+<div class="row path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb arr-right">
+        <li class="breadcrumb-item"><a href="/">Αρχική Σελίδα</a></li>
+        <% if(type === "student") { %>
+          <li class="breadcrumb-item"><a href="/student">Φοιτητής</a></li>
+        <% } else if(type === "provider") { %>
+          <li class="breadcrumb-item"><a href="/provider">Διαθέτης</a></li>
+        <% } %>
+        <li class="breadcrumb-item active" aria-current="page">Δηλωθέντα συγγράμματα</li>
+      </ol>
+    </nav>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <% if(type === "provider") {%>
+              <% if(currentUser.book.length >0) { %>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center"><b>Βιβλία</b></h4>
+                    </div>
+                  <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                          <th scope="col">Τίτλος</th>
+                        	<th scope="col">Συγγραφέας</th>
+                        </thead>
+                        <tbody>
+                            <% currentUser.book.forEach(function(book){ %>
+                                <tr>
+                                  <td><%= book.title %></td>
+                                  <td><%= book.author %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              <% } %>
+            <% } else if(type === "student") { %>
+              <% if(currentUser.book.length >0) { %>
+                <div class="card">
+                  <div class="card-header">
+                      <h4 class="text-center"><b>Βιβλία</b></h4>
+                  </div>
+                  <div class="card-body">
+                    <table class="table table-striped">
+                        <thead>
+                          <th scope="col">Τίτλος</th>
+                        	<th scope="col">Συγγραφέας</th>
+                        	<th scope="col">ISBN</th>
+                        </thead>
+                        <tbody>
+                            <% currentUser.book.forEach(function(book){ %>
+                                <tr>
+                                  <td><%= book.title %></td>
+                                  <td><%= book.author %></td>
+                                  <td><%= book.isbn %></td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              <% } %>
+            <% } %>
+          </ul>
+        </div>
+        <a href="javascript:history.back()">Πίσω</a>
+      </div>
+    </div>
+</div>
+
+
+<% include ./partials/footer %>

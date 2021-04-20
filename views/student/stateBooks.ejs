@@ -1,0 +1,182 @@
+<% include ../partials/header %>
+<% include ../partials/studentNav %>
+
+<div class="row path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb arr-right">
+        <li class="breadcrumb-item"><a href="/">Αρχική Σελίδα</a></li>
+        <li class="breadcrumb-item active"><a href="/student">Φοιτητής</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Δήλωση συγγραμμάτων</li>
+      </ol>
+    </nav>
+</div>
+
+
+<div class="titles">
+  <h1>Δήλωση συγγραμμάτων</h1>
+</div>
+        <div class="row">
+        	<div class=" bt col-md-8">
+	        <form action="/student/stateBooks" method="post" id="books">
+	        <div class="form-row">
+	          <div class="form-group col-md-3">
+				<label for="dep">Τμήμα</label>
+        <div class="space">
+        </div>
+				<select id="dep" name="department" class="form-control department" data-role="select-dropdown" data-profile="minimal">
+					<option selected="selected" value=""></option>
+					     <option value="1">
+	          			Φυσικό
+	          		</option>
+	          		<option value="2">
+	          			Μαθηματικό
+	          		</option>
+	          		<option value="3">
+	          			Πληροφορική και Τηλεπικοινωνίες
+	          		</option>
+	          		<option value="4">
+	          			Χημικό
+	          		</option>
+				</select>
+			  </div>
+
+			  <div class="form-group col-md-3">
+				<label for="semester">Εξάμηνο</label>
+        <div class="space">
+        </div>
+				<select id="semester" name="semester" class="form-control semester" data-role="select-dropdown" data-profile="minimal">
+					<option selected="selected" value=""></option>
+					     <option>
+	          			1ο
+	          		</option>
+	          		<option>
+	          			2ο
+	          		</option>
+	          		<option>
+	          			3ο
+	          		</option>
+	          		<option>
+	          			4ο
+	          		</option>
+	          		<option>
+	          			5ο
+	          		</option>
+	          		<option>
+	          			6ο
+	          		</option>
+	          		<option>
+	          			7ο
+	          		</option>
+	          		<option>
+	          			8ο
+	          		</option>
+				</select>
+			  </div>
+	      <div class="form-group col-md-3">
+				<label for="lesson">Μάθημα</label>
+        <div class="space">
+        </div>
+				<select id="lesson" name="lesson" class="form-control lesson" data-role="select-dropdown" data-profile="minimal">
+					<option selected="selected" value=""></option>
+					     <option value="1">
+	          			Χ1
+	          		</option>
+	          		<option value="2">
+	          			Χ2
+	          		</option>
+	          		<option>
+	          			Χ3
+	          		</option>
+	          		<option>
+	          			Χ4
+	          		</option>
+				</select>
+			  </div>
+
+	      <div class="form-group col-md-3">
+  				<label for="book">Σύγγραμμα</label>
+          <p><span class="text-muted">Συμπληρώστε τα προηγούμενα για να εμφανιστούν τα κατάλληλα συγγράμματα</span></p>
+  				<select id="book" name="book" class="form-control book" data-role="select-dropdown" data-profile="minimal">
+  					<option selected></option>
+  				</select>
+			  </div>
+        </div>
+            <input type="button" class="btn btn-lg btn-info btn-block" id="addrow" value="Προσθήκη Μαθήματος" />
+            <div class="form-group">
+                <button type="submit" class="btn btn-lg btn-primary float-right">Υποβολή</button>
+            </div>
+	        </form>
+	        <a href="javascript:history.back()">Πίσω</a>
+	    </div>
+    </div>
+
+    <script type="text/javascript" src="/js/stateBooks.js"></script>
+
+    <script type="text/javascript">
+
+    $(document).ready(function() {
+
+
+    var books = JSON.parse(<%- JSON.stringify(books) %>);
+
+    var dep;
+        $('#dep').on('change', function(){
+          dep = $('#dep').val();
+        });
+
+    var semester;
+        $('#semester').on('change', function(){
+          semester = $('#semester').val();
+        });
+
+    var lesson;
+        $('#lesson').on('change', function(){
+          lesson = $('#lesson').val();
+          $('#book').html('');
+          if(dep == 4 && lesson == 2){
+            books.forEach(function(book){
+              if(book.department === "Χημικό"){
+                $('#book').append('<option value='+book.isbn+'>'+book.title+'</option>');
+              }
+              else{
+                // $('#book').empty();
+              }
+            });
+          }else if(dep == 3 && lesson == 1){
+            books.forEach(function(book){
+              if(book.department === "Πληροφορική και Τηλεπικοινωνίες"){
+                $('#book').append('<option value='+book.isbn+'>'+book.title+'</option>');
+              }
+              else{
+                // $('#book').empty();
+              }
+            });
+          }
+        });
+        $('#dep').on('change', function(){
+          $('#book').html('');
+          if(dep == 4 && lesson == 2){
+            books.forEach(function(book){
+              if(book.department === "Χημικό"){
+                $('#book').append('<option value='+book.isbn+'>'+book.title+'</option>');
+              }
+              else{
+                // $('#book').empty();
+              }
+            });
+          }else if(dep == 3 && lesson == 1){
+            books.forEach(function(book){
+              if(book.department === "Πληροφορική και Τηλεπικοινωνίες"){
+                $('#book').append('<option value='+book.isbn+'>'+book.title+'</option>');
+              }
+              else{
+                // $('#book').empty();
+              }
+            });
+          }
+        });
+      });
+    </script>
+
+
+<% include ../partials/footer %>
