@@ -6,8 +6,6 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
-const dotenv = require("dotenv");
-const helmet = require("helmet");
 const mongoSanitize = require("express-mongo-sanitize");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -15,7 +13,6 @@ const User = require('./models/user');
 
 const userRoutes = require("./routes/users");
 const MongoDBStore = require("connect-mongo")(session);
-dotenv.config();
 
 dbUrl = "mongodb://127.0.0.1:27017/library";
 
@@ -71,7 +68,6 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
-app.use(helmet());
 
 app.use(passport.initialize());
 app.use(passport.session());
