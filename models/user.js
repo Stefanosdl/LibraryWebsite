@@ -7,7 +7,11 @@ const UserSchema = new Schema({
     firstname:String,
     lastname:String,
     password:String,
-    username:{type:String, unique:true , sparse: true},
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },
     userType:String,
    //  book: [{
    //    id: {
