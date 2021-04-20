@@ -13,6 +13,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require('./models/user');
 
+const userRoutes = require("./routes/users");
 const MongoDBStore = require("connect-mongo")(session);
 dotenv.config();
 
@@ -86,12 +87,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use("/", userRoutes);
+
 app.get("/", (req, res) => {
 	res.render("home");
-});
-
-app.get("/registeruser", (req, res) => {
-	res.send("");
 });
 
 app.use((req, res) => {

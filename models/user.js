@@ -7,12 +7,12 @@ const UserSchema = new Schema({
     firstname:String,
     lastname:String,
     password:String,
-    email:{
+    username:{
         type: String,
         required: true,
         unique: true
     },
-    userType:String,
+    usertype:String,
    //  book: [{
    //    id: {
    //       type: mongoose.Schema.Types.ObjectId,
