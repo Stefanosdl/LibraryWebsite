@@ -37,17 +37,21 @@
 		    <h5>Αξιολογήσεις</h3>
 		  </li>
 		</ul>
-        <form action="/books/<%=book._id%>" method="POST" class="mb-3 validated-form" novalidate>
-            <div class="mb-3">
-                <label class="form-label" for="rating">Βαθμολογία</label>
-                <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="body">Αξιολόγηση</label>
-                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
-            </div>
-            <button class="btn btn-success">Υποβολή</button>
-        </form>
+		<% if (typeof currentUser != "undefined") { %>
+			<% if (currentUser.usertype != "author") { %>
+	        <form action="/books/<%=book._id%>/review" method="POST" class="mb-3 validated-form" novalidate>
+	            <div class="mb-3">
+	                <label class="form-label" for="rating">Βαθμολογία</label>
+	                <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+	            </div>
+	            <div class="mb-3">
+	                <label class="form-label" for="body">Αξιολόγηση</label>
+	                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" placeholder="Γράψτε μία αξιολόγηση" required></textarea>
+	            </div>
+	            <button class="btn btn-success">Υποβολή</button>
+	        </form>
+	        <% } %>
+        <% } %>
         <% for(let review of book.reviews) { %>
         <div class="card mb-3 ">
             <div class="card-body">
@@ -56,13 +60,46 @@
             </div>
         </div>
         <% } %>
-
-
 		<ul class="nav nav-pills d-flex justify-content-center">
 		  <li class="nav-item">
 		    <a name="questions"></a>
 		    <h5>Ερωτήσεις</h3>
 		  </li>
 		</ul>
+		<% if (typeof currentUser != "undefined") { %>
+			<% if (currentUser.usertype != "author") { %>
+				<form action="/books/<%=book._id%>/question" method="POST" class="mb-3 validated-form" novalidate>
+		            <div class="mb-3">
+		                <label class="form-label" for="body">Ερώτηση</label>
+		                <textarea class="form-control" name="question[body]" id="body" cols="30" rows="3" placeholder="Γράψτε μία ερώτηση" required></textarea>
+		            </div>
+		            <button class="btn btn-success">Υποβολή</button>
+		        </form>
+	        <% } %>
+        <% } %>
+        <% for(let question of book.questions) { %>
+        <div class="card">
+        	<div class="card-header">
+        		Ερώτηση: <%= question.body %>
+        	</div>
+            <div class="card-body">
+            	<% if (typeof question.reply != "undefined") { %>
+                	<p class="card-text">Απάντηση: <%= question.reply %></p>
+	        	<% } %>
+				<% if (typeof currentUser != "undefined") { %>
+					<% if (currentUser.usertype == "author") { %>
+			            <form action="/books/<%=book._id%>?_method=PUT" method="POST" class="mb-3 validated-form" novalidate>
+				            <div class="mb-3">
+				                <textarea class="form-control" name="question[reply]" id="body" cols="30" rows="3" placeholder="Γράψτε μία απάντηση"required></textarea>
+				                <input type="hidden" id="body" name="question[body]" value="<%= question.body %>">
+				                <input type="hidden" id="body" name="question[id]" value="<%= question.id %>">
+				            </div>
+				            <button class="btn btn-success">Υποβολή</button>
+				        </form>
+					<% } %>
+    			<% } %>
+            </div>
+        </div>
+        <% } %>
 	</div>
 </div>

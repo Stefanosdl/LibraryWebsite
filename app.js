@@ -37,10 +37,10 @@ app.set("views", path.join(__dirname, "views"))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public")));
 app.use(mongoSanitize({
     replaceWith: "_"
-}))
+}));
 
 const secret = process.env.SECRET || "thisshouldbeabettersecret!";
 
@@ -52,7 +52,7 @@ const store = new MongoDBStore({
 
 store.on("error", function (e) {
     console.log("SESSION STORE ERROR", e)
-})
+});
 
 const sessionConfig = {
     store,

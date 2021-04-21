@@ -14,7 +14,13 @@ const BookSchema = new Schema({
 	    	type: Schema.Types.ObjectId,
 	    	ref: "Review"
 	    }
-	]
+	],
+    questions: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Question"
+        }
+    ]
 });
 
 module.exports = mongoose.model('Book',BookSchema);
