@@ -1,0 +1,63 @@
+<% layout("layouts/boilerplate")%>
+<!-- <div class="card" style="width: 18rem;">
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+	<h5 class="card-title">Card title</h5>
+	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+  <ul class="list-group list-group-flush">
+	<li class="list-group-item">An item</li>
+	<li class="list-group-item">A second item</li>
+	<li class="list-group-item">A third item</li>
+  </ul>
+  <div class="card-body">
+	<a href="#" class="card-link">Card link</a>
+	<a href="#" class="card-link">Another link</a>
+  </div>
+</div>
+ -->
+
+<div class="card w-75 mx-auto">
+	<div class="row g-0">
+		<div class="col-md-4">
+			<img class="img-fluid rounded mx-auto d-block" alt="Responsive image" src="<%=book.image%>">
+		</div>  
+		<div class="col-md-8">
+			<h5 class="card-header"><%= book.title %> </h5>
+			<div class="card-body">
+				<p class="card-text text-primary"><%= book.author %></p>
+				<p class="card-text">Εκδότης: <%= book.publisher %></p>
+			</div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">ISBN: <%= book.isbn %></li>
+			</ul>
+			<div class="card-body">
+				<p class="card-text"><%= book.description %></p>
+				<p class="card-text">
+				<a href="#reviews" class="btn btn btn-outline-secondary me-md float-left">Αξιολογήσεις</a>
+				<a href="#questions" class="btn btn btn-outline-secondary me-md float-left">Ερωτήσεις</a>
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="button" class="btn btn-outline-primary me-md-2">Τιμή: <%= book.price%>€</button>
+				</div>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+		<ul class="nav nav-pills d-flex justify-content-center">
+		  <li class="nav-item">
+		    <a href="#reviews"></a>
+		    <h5>Αξιολογήσεις</h3>
+		  </li>
+		</ul>
+		<ul class="nav nav-pills d-flex justify-content-center">
+		  <li class="nav-item">
+		    <a href="#questions"></a>
+		    <h5>Ερωτήσεις</h3>
+		  </li>
+		</ul>
+	</div>
+</div>

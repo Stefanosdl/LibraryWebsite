@@ -9,9 +9,11 @@ const methodOverride = require("method-override");
 const mongoSanitize = require("express-mongo-sanitize");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
-const User = require('./models/user');
+const User = require("./models/user");
 
 const userRoutes = require("./routes/users");
+const bookRoutes = require("./routes/books");
+
 const MongoDBStore = require("connect-mongo")(session);
 
 dbUrl = "mongodb://127.0.0.1:27017/library";
@@ -37,10 +39,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")))
 app.use(mongoSanitize({
-    replaceWith: '_'
+    replaceWith: "_"
 }))
 
-const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
 
 const store = new MongoDBStore({
     url: dbUrl,
@@ -84,6 +86,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/", userRoutes);
+app.use("/books", bookRoutes);
 
 app.get("/", (req, res) => {
 	res.render("home");
