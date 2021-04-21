@@ -1,13 +1,20 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-var BookSchema = new mongoose.Schema({
-    title:String,
-    author:String,
-    isbn:String,
-    publisher:String,
-    price:Number,
-    description:String,
-    image:String
+const BookSchema = new Schema({
+    title: String,
+    author: String,
+    isbn: String,
+    publisher: String,
+    price: Number,
+    description: String,
+    image: String,
+    reviews: [
+	    {
+	    	type: Schema.Types.ObjectId,
+	    	ref: "Review"
+	    }
+	]
 });
 
 module.exports = mongoose.model('Book',BookSchema);

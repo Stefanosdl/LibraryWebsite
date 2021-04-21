@@ -1,22 +1,4 @@
 <% layout("layouts/boilerplate")%>
-<!-- <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-	<h5 class="card-title">Card title</h5>
-	<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-  <ul class="list-group list-group-flush">
-	<li class="list-group-item">An item</li>
-	<li class="list-group-item">A second item</li>
-	<li class="list-group-item">A third item</li>
-  </ul>
-  <div class="card-body">
-	<a href="#" class="card-link">Card link</a>
-	<a href="#" class="card-link">Another link</a>
-  </div>
-</div>
- -->
-
 <div class="card w-75 mx-auto">
 	<div class="row g-0">
 		<div class="col-md-4">
@@ -45,17 +27,40 @@
 	</div>
 </div>
 
-<div class="row">
-    <div class="col-12">
+<br>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8">
 		<ul class="nav nav-pills d-flex justify-content-center">
 		  <li class="nav-item">
-		    <a href="#reviews"></a>
+		    <a name="reviews"></a>
 		    <h5>Αξιολογήσεις</h3>
 		  </li>
 		</ul>
+        <form action="/books/<%=book._id%>" method="POST" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="rating">Βαθμολογία</label>
+                <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Αξιολόγηση</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+            </div>
+            <button class="btn btn-success">Υποβολή</button>
+        </form>
+        <% for(let review of book.reviews) { %>
+        <div class="card mb-3 ">
+            <div class="card-body">
+                <h5 class="card-title">Βαθμολογία: <%= review.rating %></h5>
+                <p class="card-text">Αξιολόγηση: <%= review.body %></p>
+            </div>
+        </div>
+        <% } %>
+
+
 		<ul class="nav nav-pills d-flex justify-content-center">
 		  <li class="nav-item">
-		    <a href="#questions"></a>
+		    <a name="questions"></a>
 		    <h5>Ερωτήσεις</h3>
 		  </li>
 		</ul>
