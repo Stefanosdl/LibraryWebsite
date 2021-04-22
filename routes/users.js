@@ -29,13 +29,13 @@ router.get("/login", (req,res) => {
 	res.render("login");
 });
 
-router.post("/login", passport.authenticate('local', {failureFlash: "Το email ή ο κωδικός είναι λάθος!", failureRedirect: "/login"}), (req,res) => {
+router.post("/login", passport.authenticate("local", {failureFlash: "Το email ή ο κωδικός είναι λάθος!", failureRedirect: "/login"}), (req,res) => {
     const redirectUrl = req.session.returnTo || '/';
     delete req.session.returnTo;
     res.redirect(redirectUrl);
 });
 
-router.get('/logout', (req, res) => {
+router.get("/logout", (req, res) => {
     req.logout();
     res.redirect('/');
 })

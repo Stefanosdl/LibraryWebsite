@@ -9,6 +9,7 @@ const BookSchema = new Schema({
     price: Number,
     description: String,
     image: String,
+    subject: String,
     reviews: [
 	    {
 	    	type: Schema.Types.ObjectId,

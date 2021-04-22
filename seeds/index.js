@@ -30,7 +30,8 @@ const seedDB = async () => {
     	publisher: "ΨΥΧΟΓΙΟΣ",
     	price,
     	description: "Η Σκάρλετ Ντράγκνα δεν έχει φύγει ποτέ από το μικροσκοπικό νησί όπου ζει με την αδελφή της, την Τέλα. Όταν ο πανίσχυρος και σκληρός πατέρας τους της επιβάλλει να παντρευτεί, το όνειρο της Σκάρλετ να συμμετάσχει στο Κάραβαλ -το συναρπαστικό παιχνίδι που λαμβάνει χώρα μία φορά τον χρόνο- γκρεμίζεται.",
-        image: "https://politeia.gr/components/com_virtuemart/shop_image/product/5BF4336908C3055022A41113ED0E1AAE.jpg"
+        image: "https://politeia.gr/components/com_virtuemart/shop_image/product/5BF4336908C3055022A41113ED0E1AAE.jpg",
+        subject: "ΛΟΓΟΤΕΧΝΙΑ"
     })
     await book.save();
 
@@ -42,7 +43,8 @@ const seedDB = async () => {
         publisher: "ΜΙΝΩΑΣ",
         price,
         description: "Ο Ντόριαν Γκρέι είναι ένας αριστοκράτης, πλούσιος και κοσμικός νέος, με εκθαμβωτική ομορφιά που σαγηνεύει όποιον τον αντικρίζει. Ο Ντόριαν συνειδητοποιεί τη γοητεία που ασκεί στους ανθρώπους, όταν στέκει θαμπωμένος μπροστά στο πορτρέτο που του φιλοτέχνησε ένας φημισμένος ζωγράφος, ο Μπάζιλ Χόλγουορντ.",
-        image: "https://politeia.gr/components/com_virtuemart/shop_image/product/DA866BF5722DFDD1FE413E7412E206B8.jpg"
+        image: "https://politeia.gr/components/com_virtuemart/shop_image/product/DA866BF5722DFDD1FE413E7412E206B8.jpg",
+        subject: "ΞΕΝΗ ΠΕΖΟΓΡΑΦΙΑ"
     })
     await book.save();
 

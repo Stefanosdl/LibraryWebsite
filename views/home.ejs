@@ -1,1 +1,28 @@
 <% layout("layouts/boilerplate")%>
+<div class="row d-flex justify-content-center">
+	<div class="col-12">
+		<h1 class="text-center">Ηλεκτρονική Βιβλιοθήκη</h1>
+	</div>
+	<div class="row">
+		<div class="col-12">
+			<nav class="navbar navbar-light">
+				<div class="container-fluid">
+					<form action="/books/search" method="POST" class="d-flex my-2 mx-auto">
+						<input class="form-control me-2" type="search" name="q" id="search" placeholder="Αναζήτηση με λέξεις κλειδιά" aria-label="Search">
+						<button class="btn btn-outline-primary" type="submit">Αναζήτηση</button>
+					</form>
+				</div>
+			</nav>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <a href="/books" class="btn btn-primary">Εμφάνιση όλων των βιβλίων</a>
+    </div>
+  </div>
+</div>

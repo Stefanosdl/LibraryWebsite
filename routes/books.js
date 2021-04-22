@@ -15,6 +15,37 @@ router.get("/", catchAsync(async (req, res) => {
     res.render("books/index", { books })
 }));
 
+router.get("/search", catchAsync(async (req, res) => {
+    // console.log(book);
+    
+}));
+
+router.post("/search", catchAsync(async (req, res) => {
+    try {
+        const query = req.body.q;
+        if (query){
+            let regex = new RegExp(query,'i');
+            const searchedBooks = await Book.find({$or: [{title: regex}, {author: regex}, {isbn:regex}, {publisher: regex}, {description: regex}, {subject: regex}]});
+            if(searchedBooks == undefined || searchedBooks.length == 0) {
+                req.flash("error", "Η αναζήτησή σας δεν είχε κανένα αποτέλεσμα!");
+                res.redirect('/');
+            }
+            else {
+                res.render("books/search", { searchedBooks });;
+            }
+        }
+        else {
+            const books = await Book.find({});
+            res.render("books/index", { books });
+        }
+
+    }
+    catch (e) {
+        req.flash("error", e.message);
+        res.redirect('/');
+    }
+}));
+
 router.get("/:id", catchAsync(async (req,res) => {
 	const book = await Book.findById(req.params.id).populate("reviews").populate("questions").exec();
     if (!book) {

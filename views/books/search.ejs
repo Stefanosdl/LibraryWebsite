@@ -1,0 +1,25 @@
+<% layout("layouts/boilerplate")%>
+
+<% for (let book of searchedBooks){%>
+<div class="card mb-3 mx-auto" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img class="img-fluid rounded mx-auto d-block" alt="Responsive image" src="<%=book.image%>">
+        </div>  
+        <div class="col-md-8">
+            <h5 class="card-header"><%= book.title %> </h5>
+            <div class="card-body">
+                <p class="card-text text-primary"><%= book.author %></p>
+                <p class="card-text">Εκδότης: <%= book.publisher %></p>
+                <p class="card-text"><%= book.description %></p>
+                <p class="card-text">
+                <a href="/books/<%=book._id%>" class="btn btn-primary me-md float-left">Πληροφορίες</a>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                	<button type="button" class="btn btn-outline-primary me-md-2">Τιμή: <%= book.price%>€</button>
+                </div>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<% }%>

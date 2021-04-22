@@ -11,10 +11,13 @@
             </div>
             <div class="navbar-nav ml-auto">
                 <% if(!currentUser) {%>
-                <a class="nav-link" href="/login">Σύνδεση</a>
-                <a class="nav-link" href="/register">Εγγραφή</a>
+                    <a class="nav-link" href="/login">Σύνδεση</a>
+                    <a class="nav-link" href="/register">Εγγραφή</a>
                 <% } else {%>
-                <a class="nav-link" href="/logout">Αποσύνδεση</a>
+                    <% if(currentUser.usertype == "author") {%>
+                        <a class="nav-link" href="#">Στατιστικά</a>
+                    <% } %>
+                    <a class="nav-link" href="/logout">Αποσύνδεση</a>
                 <% } %>
             </div>
         </div>
