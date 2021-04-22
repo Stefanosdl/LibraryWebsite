@@ -9,7 +9,8 @@ module.exports.bookSchema = Joi.object({
         author: Joi.string().required(),
         publisher: Joi.string().required(),
         isbn: Joi.string().required(),
-        description: Joi.string().required()
+        description: Joi.string().required(),
+        subject: Joi.string().required()
     }).required()
 });
 

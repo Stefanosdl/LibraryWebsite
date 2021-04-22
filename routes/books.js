@@ -16,13 +16,8 @@ router.get("/", catchAsync(async (req, res) => {
 }));
 
 router.get("/search", catchAsync(async (req, res) => {
-    // console.log(book);
-    
-}));
-
-router.post("/search", catchAsync(async (req, res) => {
     try {
-        const query = req.body.q;
+        const query = req.query.q;
         if (query){
             let regex = new RegExp(query,'i');
             const searchedBooks = await Book.find({$or: [{title: regex}, {author: regex}, {isbn:regex}, {publisher: regex}, {description: regex}, {subject: regex}]});
