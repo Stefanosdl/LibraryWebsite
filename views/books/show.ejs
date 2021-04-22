@@ -87,7 +87,7 @@
                 	<p class="card-text">Απάντηση: <%= question.reply %></p>
 	        	<% } %>
 				<% if (typeof currentUser != "undefined") { %>
-					<% if (currentUser.usertype == "author") { %>
+					<% if (currentUser.usertype == "author" && ((currentUser.firstname + " " + currentUser.lastname) == book.author)) { %>
 			            <form action="/books/<%=book._id%>?_method=PUT" method="POST" class="mb-3 validated-form" novalidate>
 				            <div class="mb-3">
 				                <textarea class="form-control" name="question[reply]" id="body" cols="30" rows="3" placeholder="Γράψτε μία απάντηση"required></textarea>
