@@ -3,6 +3,14 @@ const router = express.Router();
 const passport = require("passport");
 const catchAsync = require('../utils/catchAsync');
 const User = require("../models/user");
+const { isLoggedIn } = require("../middleware/middleware");
+const Book = require("../models/books");
+
+router.get("/statistics", isLoggedIn, catchAsync(async (req, res, next) => {
+	const author = req.user.firstname + " " + req.user.lastname;
+	const books = await Book.find({author: author});
+	res.render("statistics", { books });
+}));
 
 router.get("/register", (req, res) => {
 	res.render("register");

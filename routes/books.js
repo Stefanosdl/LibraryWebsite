@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ExpressError = require("../utils/ExpressError");
 const catchAsync = require("../utils/catchAsync");
-const { isLoggedIn } = require('../middleware/middleware');
+const { isLoggedIn } = require("../middleware/middleware");
 
 const { reviewSchema } = require("../schemas.js");
 
@@ -25,13 +25,12 @@ router.get("/checkout/:id", isLoggedIn, catchAsync(async (req, res) => {
 
 }));
 
-router.post("/checkout/:id", isLoggedIn, catchAsync(async (req, res) => {
-    // const book = await Book.findById(req.params.id);
-    // if (!book) {
-    //     req.flash("error", "Δεν υπάρχει το συγκεκριμένο βιβλίο!");
-    //     return res.redirect("/books");
-    // }
+router.put("/checkout/:id", isLoggedIn, catchAsync(async (req, res) => {
     console.log(req.body);
+    const author = await Book.findOneAndUpdate({author: req.body.author}, {"$push": {"curprice": req.body.price}});
+
+    await author.save();
+
     req.flash("success", "Επιτυχής αγορά!");
     res.redirect('/books');
 
