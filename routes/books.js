@@ -12,7 +12,29 @@ const Question = require("../models/questions");
 
 router.get("/", catchAsync(async (req, res) => {
     const books = await Book.find({});
-    res.render("books/index", { books })
+    res.render("books/index", { books });
+}));
+
+router.get("/checkout/:id", isLoggedIn, catchAsync(async (req, res) => {
+    const book = await Book.findById(req.params.id);
+    if (!book) {
+        req.flash("error", "Δεν υπάρχει το συγκεκριμένο βιβλίο!");
+        return res.redirect("/books");
+    }
+    res.render("books/checkout", { book });
+
+}));
+
+router.post("/checkout/:id", isLoggedIn, catchAsync(async (req, res) => {
+    // const book = await Book.findById(req.params.id);
+    // if (!book) {
+    //     req.flash("error", "Δεν υπάρχει το συγκεκριμένο βιβλίο!");
+    //     return res.redirect("/books");
+    // }
+    console.log(req.body);
+    req.flash("success", "Επιτυχής αγορά!");
+    res.redirect('/books');
+
 }));
 
 router.get("/search", catchAsync(async (req, res) => {
