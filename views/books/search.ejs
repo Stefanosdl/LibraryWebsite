@@ -14,9 +14,18 @@
                 <p class="card-text"><%= book.description %></p>
                 <p class="card-text">
                 <a href="/books/<%=book._id%>" class="btn btn-primary me-md float-left">Πληροφορίες</a>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                	<button type="button" class="btn btn-outline-primary me-md-2">Τιμή: <%= book.price%>€</button>
-                </div>
+                
+                <% if (typeof currentUser != "undefined") { %>
+                    <% if (currentUser.usertype != "author") { %>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/books/checkout/<%=book._id%>" class="btn btn-outline-primary me-md-2">Τιμή: <%= book.price%>€</a>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a href="/books/checkout/<%=book._id%>" class="btn btn-outline-primary me-md-2">Τιμή: <%= book.price%>€</a>
+                    </div>
+                <% } %>
                 </p>
             </div>
         </div>

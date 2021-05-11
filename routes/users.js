@@ -9,7 +9,6 @@ const Book = require("../models/books");
 router.get("/statistics", isLoggedIn, catchAsync(async (req, res, next) => {
 	const author = req.user.firstname + " " + req.user.lastname;
 	const books = await Book.find({author: author});
-	console.log(books);
 	res.render("statistics", { books });
 }));
 
