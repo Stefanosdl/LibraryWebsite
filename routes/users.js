@@ -12,6 +12,11 @@ router.get("/statistics", isLoggedIn, catchAsync(async (req, res, next) => {
 	res.render("statistics", { books });
 }));
 
+router.get("/statistics/:id", isLoggedIn, catchAsync(async (req, res, next) => {
+    const book = await Book.findById(req.params.id).populate("reviews");
+	res.render("reviews", { book });
+}));
+
 router.get("/register", (req, res) => {
 	res.render("register");
 });

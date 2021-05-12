@@ -1,0 +1,49 @@
+<% layout("layouts/boilerplate")%>
+<div class="card w-75 mx-auto">
+	<div class="row g-0">
+		<div class="col-md-4">
+			<img class="img-fluid rounded mx-auto d-block" alt="Responsive image" src="<%=book.image%>">
+		</div>  
+		<div class="col-md-8">
+			<h5 class="card-header"><%= book.title %> </h5>
+            <div class="card-body">
+                <p class="card-text text-primary"><%= book.author %></p>
+                <p class="card-text">Εκδότης: <%= book.publisher %></p>
+            </div>
+			<ul class="list-group list-group-flush">
+				<li class="list-group-item">Πωλήσεις: <%= book.curprice.length %></li>
+    			<li class="list-group-item">Συνολικά Κέρδη: <%= book.curprice.reduce((a, b) => a + b, 0) %>€</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<br>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+		<ul class="nav nav-pills d-flex justify-content-center">
+		  <li class="nav-item">
+		    <a name="reviews"></a>
+		    <h5>Αξιολογήσεις</h5>
+		  </li>
+		</ul>
+    	<% if (Object.keys(book.reviews).length === 0) { %>
+    			<br>
+    			<ul class="nav nav-pills d-flex justify-content-center">
+					<li class="nav-item">
+						<a name="reviews"></a>
+						<h6>Δεν υπάρχουν αξιολογήσεις για το συγκεκριμένο βιβλίο.</h6>
+					</li>
+				</ul>
+    	<% } %>
+        <% for(let review of book.reviews) { %>
+        <div class="card mb-3 ">
+            <div class="card-body">
+                <h5 class="card-title">Βαθμολογία: <%= review.rating %></h5>
+                <p class="card-text">Αξιολόγηση: <%= review.body %></p>
+            </div>
+        </div>
+        <% } %>
+	</div>
+</div>
